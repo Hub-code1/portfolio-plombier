@@ -128,6 +128,45 @@
         </div>
       </div>
     </section>
+    <section class="avis">
+      <h2>Avis clients</h2>
+      <div class="avis-container">
+        <button class="carousel-btn prev" onclick="prevSlide()">←</button>
+
+        <div class="carousel">
+          <div class="carousel-track">
+            <div class="avis-item">
+              <div class="stars">★★★★★</div>
+              <p>“Excellent travail, très professionnel et ponctuel !”</p>
+              <strong>— Jean D.</strong>
+            </div>
+            <div class="avis-item">
+              <div class="stars">★★★★★</div>
+              <p>“Service rapide et très courtois. Je recommande.”</p>
+              <strong>— Sophie L.</strong>
+            </div>
+            <div class="avis-item">
+              <div class="stars">★★★★★</div>
+              <p>“Travail propre et soigné, rien à redire.”</p>
+              <strong>— Nicolas B.</strong>
+            </div>
+            <div class="avis-item">
+              <div class="stars">★★★★★</div>
+              <p>“Intervention efficace, plombier sympathique.”</p>
+              <strong>— Camille R.</strong>
+            </div>
+            <div class="avis-item">
+              <div class="stars">★★★★★</div>
+              <p>“Très bon rapport qualité/prix. Merci encore !”</p>
+              <strong>— Thomas P.</strong>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-btn next" onclick="nextSlide()">→</button>
+      </div>
+    </section>
+
     <footer class="footer">
       <div class="footer-container">
         <!-- Colonne 1 -->
@@ -182,5 +221,27 @@
         </p>
       </div>
     </footer>
+    <script>
+      let currentIndex = 0;
+      const track = document.querySelector(".carousel-track");
+      const slides = document.querySelectorAll(".avis-item");
+
+      function updateSlidePosition() {
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+
+      function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlidePosition();
+      }
+
+      function prevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateSlidePosition();
+      }
+
+      // Optionnel : défilement automatique toutes les 5 secondes
+      setInterval(nextSlide, 5000);
+    </script>
   </body>
 </html>
