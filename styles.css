@@ -183,9 +183,10 @@ body {
 
 .action h2 {
   font-size: 50px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   font-weight: 800;
   color: #fff;
+  margin-left: 20vw;
 }
 
 .action p {
@@ -196,6 +197,7 @@ body {
   color: #fff;
   margin-bottom: 40px;
   margin-top: 40px;
+  margin-left: 30vw;
 }
 
 .action a {
@@ -206,12 +208,14 @@ body {
   background-color: #fff;
   border-radius: 5px;
   padding: 12px 24px;
-  margin-left: 20px;
+  margin-left: 20vw;
 }
 
 .action-content #tel_action {
   color: white;
   font-size: 25px;
+  margin-left: 20vw;
+  margin-bottom: 10px;
 }
 .footer {
   background-color: #f2f2f2;
@@ -319,58 +323,51 @@ body {
 
 .carousel {
   overflow: hidden;
+  position: relative;
 }
 
 .carousel-track {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease;
+  width: 100%;
 }
 
 .avis-item {
   min-width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  background: #fff;
-  padding: 40px 30px;
-  box-sizing: border-box;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  text-align: center;
 }
 
-.avis-item .stars {
-  font-size: 24px;
-  color: gold;
-  margin-bottom: 10px;
-}
-
-.avis-item p {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
+.avis-item .stars,
+.avis-item p,
 .avis-item strong {
-  font-weight: bold;
+  text-align: center;
+  display: block;
 }
 
-.carousel-btn {
+.avis-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   background: #007bff;
-  border: none;
   color: white;
-  padding: 12px 18px;
-  font-size: 20px;
+  border: none;
   border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
   cursor: pointer;
-  z-index: 10;
+  z-index: 2;
 }
 
-.carousel-btn.prev {
+.avis-arrow.prev {
   left: 10px;
 }
 
-.carousel-btn.next {
+.avis-arrow.next {
   right: 10px;
 }
 
@@ -397,33 +394,302 @@ body {
 }
 
 /* ===== RESPONSIVE MOBILE ===== */
-@media screen and (max-width: 768px) {
-  .topbar,
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 15px;
-  }
-
-  .menu {
-    flex-direction: column;
-    gap: 15px;
-    padding-top: 10px;
-  }
-
-  .quote-btn {
-    align-self: flex-start;
-  }
-}
 @media screen and (max-width: 900px) {
   .services .container {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+@media screen and (max-width: 768px) {
+  /* Topbar & Navbar */
+  .topbar {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+    padding: 15px;
+  }
+
+  .topbar .left-info,
+  .topbar .right-info {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .topbar .left-info span,
+  .topbar .right-info span {
+    display: block;
+    margin: 2px 0;
+  }
+
+  .topbar .social-icons {
+    margin-top: 8px;
+    justify-content: center;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .menu {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding-top: 10px;
+  }
+
+  .quote-btn {
+    align-self: center;
+  }
+
+  /* Carousel buttons */
+  .carousel-btn.prev {
+    left: 0;
+  }
+
+  .carousel-btn.next {
+    right: 0;
+  }
+
+  .avis-item {
+    padding: 30px 20px;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .services .container {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ===== HOVER ONLY ON DEVICE WITH MOUSE ===== */
+@media (hover: hover) and (pointer: fine) {
+  .carousel-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-50%) scale(1.1);
+    transition: all 0.2s ease-in-out;
+  }
+}
+/* === BURGER === */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.burger span {
+  display: block;
+  height: 3px;
+  background-color: #000;
+  border-radius: 2px;
+}
+
+/* === BURGER CLEAN === */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 25px;
+  cursor: pointer;
+  gap: 5px;
+  margin: auto;
+}
+
+.burger span {
+  width: 100%;
+  height: 3px;
+  background-color: #000;
+  border-radius: 2px;
+  transition: 0.3s ease;
+  transform-origin: center;
+}
+
+/* Animation en croix */
+.burger.open span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+
+.burger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.open span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* Menu mobile */
+@media screen and (max-width: 852px) {
+  .burger {
+    display: flex;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 0;
+    background-color: white;
+  }
+
+  .menu.active {
+    display: flex;
+  }
+
+  .navbar {
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 852px) {
+  .quote-btn {
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 852px) {
+  .action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    min-height: 100vh; /* pour centrer verticalement */
+    background-size: cover;
+    background-position: left;
+    background-position: -240px;
+  }
+  .action::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Ajuste l'opacité ici */
+    z-index: 1;
+  }
+
+  .action-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .action {
+    position: relative;
+  }
+}
+.action-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.action-content h2 {
+  font-size: 1.6rem;
+  line-height: 1.4;
+  color: white;
+}
+
+.action-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: white;
+  text-align: center;
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+#tel_action {
+  font-size: 1.1rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.action-btn a {
+  padding: 12px 24px;
+  font-size: 1rem;
+  background: white;
+  color: #0044cc;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.action-btn a:hover {
+  background: #e0e0e0;
+}
+
+.carousel {
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 16px;
+  transition: transform 0.4s ease-in-out;
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.carousel-track {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.avis-item {
+  flex: 0 0 85%;
+  scroll-snap-align: center;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.avis-item .stars {
+  color: gold;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.avis-item p,
+.avis-item strong {
+  display: block;
+  margin: 5px 0;
+}
+
+/* Responsive Desktop : largeur plus petite + auto slide */
+@media screen and (min-width: 853px) {
+  .avis-item {
+    flex: 0 0 40%;
   }
 }

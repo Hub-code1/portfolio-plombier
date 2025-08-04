@@ -35,11 +35,22 @@
         <img src="images/plomberie service.png" alt="texte alternative" />
         <span>NOM ENTREPRISE</span>
       </div>
-      <nav class="menu">
+
+      <!-- BURGER ICON (visible uniquement sur mobile) -->
+      <div class="burger" id="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <!-- MENU DE NAVIGATION -->
+      <nav class="menu" id="menu">
         <a href="#">Accueil</a>
         <a href="#">A propos</a>
         <a href="#">Services</a>
       </nav>
+
+      <!-- BOUTON DEVIS -->
       <a href="#" class="quote-btn">Avoir un devis !</a>
     </header>
     <div class="intro">
@@ -109,6 +120,7 @@
       </div>
     </section>
     <section class="action">
+      <div class="overlay"></div>
       <div class="action-content">
         <h2>
           Vous avez un problème ?<br />
@@ -130,40 +142,29 @@
     </section>
     <section class="avis">
       <h2>Avis clients</h2>
-      <div class="avis-container">
-        <button class="carousel-btn prev" onclick="prevSlide()">←</button>
-
-        <div class="carousel">
-          <div class="carousel-track">
-            <div class="avis-item">
-              <div class="stars">★★★★★</div>
-              <p>“Excellent travail, très professionnel et ponctuel !”</p>
-              <strong>— Jean D.</strong>
-            </div>
-            <div class="avis-item">
-              <div class="stars">★★★★★</div>
-              <p>“Service rapide et très courtois. Je recommande.”</p>
-              <strong>— Sophie L.</strong>
-            </div>
-            <div class="avis-item">
-              <div class="stars">★★★★★</div>
-              <p>“Travail propre et soigné, rien à redire.”</p>
-              <strong>— Nicolas B.</strong>
-            </div>
-            <div class="avis-item">
-              <div class="stars">★★★★★</div>
-              <p>“Intervention efficace, plombier sympathique.”</p>
-              <strong>— Camille R.</strong>
-            </div>
-            <div class="avis-item">
-              <div class="stars">★★★★★</div>
-              <p>“Très bon rapport qualité/prix. Merci encore !”</p>
-              <strong>— Thomas P.</strong>
-            </div>
+      <div class="carousel">
+        <div class="carousel-track">
+          <div class="avis-item">
+            <div class="stars">★★★★★</div>
+            <p>“Excellent travail, très professionnel et ponctuel !”</p>
+            <strong>— Jean D.</strong>
+          </div>
+          <div class="avis-item">
+            <div class="stars">★★★★★</div>
+            <p>“Service rapide et très courtois. Je recommande.”</p>
+            <strong>— Sophie L.</strong>
+          </div>
+          <div class="avis-item">
+            <div class="stars">★★★★★</div>
+            <p>“Travail propre et soigné, rien à redire.”</p>
+            <strong>— Nicolas B.</strong>
+          </div>
+          <div class="avis-item">
+            <div class="stars">★★★★★</div>
+            <p>“Intervention efficace, plombier sympathique.”</p>
+            <strong>— Camille R.</strong>
           </div>
         </div>
-
-        <button class="carousel-btn next" onclick="nextSlide()">→</button>
       </div>
     </section>
 
@@ -222,26 +223,29 @@
       </div>
     </footer>
     <script>
-      let currentIndex = 0;
       const track = document.querySelector(".carousel-track");
-      const slides = document.querySelectorAll(".avis-item");
+      let scrollAmount = 0;
 
-      function updateSlidePosition() {
-        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      // Auto défilement desktop
+      function autoScroll() {
+        if (window.innerWidth >= 853) {
+          const maxScroll = track.scrollWidth - track.clientWidth;
+          scrollAmount += 2;
+
+          if (scrollAmount >= maxScroll) scrollAmount = 0;
+
+          track.scrollTo({ left: scrollAmount, behavior: "smooth" });
+        }
       }
 
-      function nextSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateSlidePosition();
-      }
-
-      function prevSlide() {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        updateSlidePosition();
-      }
-
-      // Optionnel : défilement automatique toutes les 5 secondes
-      setInterval(nextSlide, 5000);
+      setInterval(() => {
+        const scrollAmount = track.scrollLeft + track.offsetWidth;
+        if (scrollAmount >= track.scrollWidth) {
+          track.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          track.scrollTo({ left: scrollAmount, behavior: "smooth" });
+        }
+      }, 3000); // Temps de défilement
     </script>
   </body>
 </html>
